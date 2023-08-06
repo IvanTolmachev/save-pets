@@ -21,6 +21,19 @@ const NoticesFilters = ({ filterNoticeAge }) => {
   const [ageOpen, setAgeOpen] = useState(false);
   const [genderOpen, setGenderOpen] = useState(false);
   const [rotationAge, setRotationAge] = useState(0);
+  const initialValues = {
+    age: '',
+  };
+
+  const [checkedValues, setCheckedValues] = useState(initialValues);
+
+  const handleCheckboxChangeInternal = (fieldName, newValue) => {
+    setCheckedValues(prevCheckedValues => ({
+      ...prevCheckedValues,
+      [fieldName]: newValue,
+    }));
+    handleCheckboxChange(newValue);
+  };
 
   const [rotationGender, setRotationGender] = useState(0);
   const handleBtnClick = () => {
@@ -103,12 +116,11 @@ const NoticesFilters = ({ filterNoticeAge }) => {
                           type="checkbox"
                           name="age"
                           value="month"
-                          checked={values.age === 'month'}
+                          checked={checkedValues.age === 'month'}
                           onChange={() => {
                             const newValue =
-                              values.age === 'month' ? '' : 'month';
-                            setFieldValue('age', newValue);
-                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                              checkedValues.age === 'month' ? '' : 'month';
+                            handleCheckboxChangeInternal('age', newValue);
                           }}
                         />
                         0-12 m
