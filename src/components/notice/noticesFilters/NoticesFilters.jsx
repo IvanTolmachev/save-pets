@@ -13,7 +13,6 @@ import {
   Input,
   BtnLabel,
   BtnOpenTitle,
-  IconCheck,
 } from './NoticesFilters.styled';
 import icons from '../../../images/icons/icons-card.svg';
 
@@ -22,8 +21,6 @@ const NoticesFilters = ({ filterNoticeAge }) => {
   const [ageOpen, setAgeOpen] = useState(false);
   const [genderOpen, setGenderOpen] = useState(false);
   const [rotationAge, setRotationAge] = useState(0);
-  const [isChecked, setIsChecked] = useState(false);
-  console.log('чекед', isChecked);
 
   const [rotationGender, setRotationGender] = useState(0);
   const handleBtnClick = () => {
@@ -62,13 +59,7 @@ const NoticesFilters = ({ filterNoticeAge }) => {
   }, [isOpen]);
 
   const handleCheckboxChange = event => {
-    console.log(event.target.checked);
-    setIsChecked(event.target.checked);
-
-    filterNoticeAge(event.target.value);
-    if (isChecked) {
-      filterNoticeAge('event');
-    }
+    filterNoticeAge(event);
   };
 
   return (
@@ -104,54 +95,71 @@ const NoticesFilters = ({ filterNoticeAge }) => {
                 <BtnLabel>By age</BtnLabel>
               </BtnFilter>
               {ageOpen && (
-                <Formik initialValues={{ age: [] }}>
-                  <Forma>
-                    <Label>
-                      <Input
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        name="age"
-                        value="month"
-                      />
-                      {isChecked && (
-                        <IconCheck width={16} height={16}>
-                          <use href={icons + '#check'}></use>
-                        </IconCheck>
-                      )}
-                      0-12 m
-                    </Label>
-                    <Label>
-                      <Input
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        name="age"
-                        value="year"
-                      />
-                      1 year
-                    </Label>
-                    <Label>
-                      <Input
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        name="age"
-                        value="2years"
-                      />
-                      2 years
-                    </Label>
-                    <Label>
-                      <Input
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        name="age"
-                        value="3years"
-                      />
-                      3 years +
-                    </Label>
-                  </Forma>
+                <Formik initialValues={{ age: '' }}>
+                  {({ values, setFieldValue }) => (
+                    <Forma>
+                      <Label>
+                        <Input
+                          type="checkbox"
+                          name="age"
+                          value="month"
+                          checked={values.age === 'month'}
+                          onChange={() => {
+                            const newValue =
+                              values.age === 'month' ? '' : 'month';
+                            setFieldValue('age', newValue);
+                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                          }}
+                        />
+                        0-12 m
+                      </Label>
+                      <Label>
+                        <Input
+                          type="checkbox"
+                          name="age"
+                          value="year"
+                          checked={values.age === 'year'}
+                          onChange={() => {
+                            const newValue =
+                              values.age === 'year' ? '' : 'year';
+                            setFieldValue('age', newValue);
+                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                          }}
+                        />
+                        1 year
+                      </Label>
+                      <Label>
+                        <Input
+                          type="checkbox"
+                          name="age"
+                          checked={values.age === '2years'}
+                          value="2years"
+                          onChange={() => {
+                            const newValue =
+                              values.age === '2years' ? '' : '2years';
+                            setFieldValue('age', newValue);
+                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                          }}
+                        />
+                        2 years
+                      </Label>
+                      <Label>
+                        <Input
+                          type="checkbox"
+                          name="age"
+                          checked={values.age === '3years'}
+                          value="3years"
+                          onChange={() => {
+                            const newValue =
+                              values.age === '3years' ? '' : '3years';
+                            setFieldValue('age', newValue);
+                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                          }}
+                        />
+                        3 years +
+                      </Label>
+                    </Forma>
+                  )}
                 </Formik>
               )}
             </SubMenu>
@@ -172,28 +180,40 @@ const NoticesFilters = ({ filterNoticeAge }) => {
               </BtnFilter>
               {genderOpen && (
                 <Formik initialValues={{ gender: '' }}>
-                  <Forma>
-                    <Label>
-                      <Input
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        name="gender"
-                        value="male"
-                      />
-                      male
-                    </Label>
-                    <Label>
-                      <Input
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        name="gender"
-                        value="female"
-                      />
-                      female
-                    </Label>
-                  </Forma>
+                  {({ values, setFieldValue }) => (
+                    <Forma>
+                      <Label>
+                        <Input
+                          onChange={() => {
+                            const newValue =
+                              values.gender === 'male' ? '' : 'male';
+                            setFieldValue('gender', newValue);
+                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                          }}
+                          checked={values.gender === 'male'}
+                          type="checkbox"
+                          name="gender"
+                          value="male"
+                        />
+                        male
+                      </Label>
+                      <Label>
+                        <Input
+                          onChange={() => {
+                            const newValue =
+                              values.gender === 'female' ? '' : 'female';
+                            setFieldValue('gender', newValue);
+                            handleCheckboxChange(newValue); // Передаємо дані у функцію
+                          }}
+                          checked={values.gender === 'female'}
+                          type="checkbox"
+                          name="gender"
+                          value="female"
+                        />
+                        female
+                      </Label>
+                    </Forma>
+                  )}
                 </Formik>
               )}
             </SubMenu>

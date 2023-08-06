@@ -213,8 +213,6 @@ export const Input = styled(Field)`
   transition: border-color 250ms cubic-bezier(0.21, 0.65, 0.66, 0.12),
     transform 250ms cubic-bezier(0.21, 0.65, 0.66, 0.12);
 
-  appearance: none;
-
   &::before {
     content: '';
     width: 0.85em;
@@ -281,4 +279,3 @@ export const IconCheck = styled.svg`
     stroke: ${variables.colors.secondaryText};
   }
 `;
-
