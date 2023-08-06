@@ -15,6 +15,7 @@ import {
   BtnOpenTitle,
 } from './NoticesFilters.styled';
 import icons from '../../../images/icons/icons-card.svg';
+import ElementFilter from './ElementFilter';
 
 const NoticesFilters = ({ filterNoticeAge }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -111,20 +112,18 @@ const NoticesFilters = ({ filterNoticeAge }) => {
                 <Formik initialValues={{ age: '' }}>
                   {({ values, setFieldValue }) => (
                     <Forma>
-                      <Label>
-                        <Input
-                          type="checkbox"
-                          name="age"
-                          value="month"
-                          checked={checkedValues.age === 'month'}
-                          onChange={() => {
-                            const newValue =
-                              checkedValues.age === 'month' ? '' : 'month';
-                            handleCheckboxChangeInternal('age', newValue);
-                          }}
-                        />
-                        0-12 m
-                      </Label>
+                      <ElementFilter
+                        type="checkbox"
+                        name="age"
+                        value="month"
+                        isChecked={checkedValues}
+                        checked={checkedValues.age === 'month'}
+                        onChange={() => {
+                          const newValue =
+                            checkedValues.age === 'month' ? '' : 'month';
+                          handleCheckboxChangeInternal('age', newValue);
+                        }}
+                      />
                       <Label>
                         <Input
                           type="checkbox"

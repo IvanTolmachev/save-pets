@@ -207,7 +207,7 @@ export const Input = styled(Field)`
   place-content: center;
   cursor: pointer;
   line-height: 0;
-
+  appearance: none;
   border-radius: 4px;
   border: 2px solid ${variables.colors.buttonsHoverBg};
   transition: border-color 250ms cubic-bezier(0.21, 0.65, 0.66, 0.12),
