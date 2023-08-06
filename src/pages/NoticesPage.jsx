@@ -41,8 +41,38 @@ const NoticesPage = () => {
   const locationCategory = params.categoryName;
   const [isModalOpenUserLogin, setIsModalOpenUserLogin] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [noticeAge, setNoticeAge] = useState('');
+  const [noticeSEx, setNoticeSex] = useState('');
 
   // для кнопки add pet
+
+  const filterNoticeAge = param => {
+    switch (param) {
+      case 'month':
+        setNoticeAge({ startAge: 1, endAge: 11 });
+        break;
+      case 'year':
+        setNoticeAge({ startAge: 12, endAge: 23 });
+        break;
+      case '2years':
+        setNoticeAge({ startAge: 24, endAge: 35 });
+        break;
+      case '3years':
+        setNoticeAge({ startAge: 36, endAge: 100 });
+        break;
+      case 'female':
+        setNoticeSex('female');
+        break;
+      case 'male':
+        setNoticeSex('male');
+        break;
+      default:
+        setNoticeSex('');
+        setNoticeAge('');
+        break;
+    }
+  };
+
   const handleNavigate = source => {
     if (!isLoggedIn) {
       setIsModalOpenUserLogin(true);
@@ -79,15 +109,17 @@ const NoticesPage = () => {
   };
 
   useEffect(() => {
+    const params = {
+      category: locationCategory,
+      limit: resizeHandler(width),
+      page: page + 1,
+      title: title,
+      ...noticeAge,
+      sex: noticeSEx,
+    };
+
     if (locationCategory !== 'favorite' && locationCategory !== 'own') {
-      dispatch(
-        fetchByCategory({
-          category: locationCategory,
-          limit: resizeHandler(width),
-          page: page + 1,
-          title: title,
-        })
-      );
+      dispatch(fetchByCategory(removeEmptyKeys(params)));
     }
     if (locationCategory === 'favorite') {
       dispatch(
@@ -107,8 +139,28 @@ const NoticesPage = () => {
         })
       );
     }
-  }, [dispatch, locationCategory, limit, page, title, width]);
+  }, [
+    dispatch,
+    locationCategory,
+    limit,
+    page,
+    title,
+    width,
+    noticeAge,
+    noticeSEx,
+  ]);
 
+  function removeEmptyKeys(obj) {
+    for (const key in obj) {
+      if (
+        obj.hasOwnProperty(key) &&
+        (obj[key] === null || obj[key] === undefined || obj[key] === '')
+      ) {
+        delete obj[key];
+      }
+    }
+    return obj;
+  }
   const handlePageClick = ({ selected }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setPage(selected);
@@ -126,7 +178,7 @@ const NoticesPage = () => {
       <WrapperFilter>
         <NoticesCategoriesNav onClick={handleCategoryChange} />
         <WrapperBtn>
-          <NoticesFilters />
+          <NoticesFilters filterNoticeAge={filterNoticeAge} />
           {width >= 768 && (
             <AddPetBtn onClick={() => handleNavigate('notices')} />
           )}

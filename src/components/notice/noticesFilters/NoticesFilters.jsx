@@ -13,14 +13,18 @@ import {
   Input,
   BtnLabel,
   BtnOpenTitle,
+  IconCheck,
 } from './NoticesFilters.styled';
 import icons from '../../../images/icons/icons-card.svg';
 
-const NoticesFilters = () => {
+const NoticesFilters = ({ filterNoticeAge }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [ageOpen, setAgeOpen] = useState(false);
   const [genderOpen, setGenderOpen] = useState(false);
   const [rotationAge, setRotationAge] = useState(0);
+  const [isChecked, setIsChecked] = useState(false);
+  console.log('чекед', isChecked);
+
   const [rotationGender, setRotationGender] = useState(0);
   const handleBtnClick = () => {
     setRotationAge(0);
@@ -57,9 +61,14 @@ const NoticesFilters = () => {
     };
   }, [isOpen]);
 
-  const initialValues = {
-    age: ['0-12 m', '1 year'], // Пример данных с двумя выбранными значениями
-    gender: ['male'], // Пример данных с одним выбранным значением
+  const handleCheckboxChange = event => {
+    console.log(event.target.checked);
+    setIsChecked(event.target.checked);
+
+    filterNoticeAge(event.target.value);
+    if (isChecked) {
+      filterNoticeAge('event');
+    }
   };
 
   return (
@@ -95,33 +104,52 @@ const NoticesFilters = () => {
                 <BtnLabel>By age</BtnLabel>
               </BtnFilter>
               {ageOpen && (
-                <Formik initialValues={initialValues}>
+                <Formik initialValues={{ age: [] }}>
                   <Forma>
                     <Label>
                       <Input
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
                         type="checkbox"
                         name="age"
-                        value="0-12 m"
-                        // checked={values.age.includes('0-12 m')}
+                        value="month"
                       />
+                      {isChecked && (
+                        <IconCheck width={16} height={16}>
+                          <use href={icons + '#check'}></use>
+                        </IconCheck>
+                      )}
                       0-12 m
                     </Label>
                     <Label>
                       <Input
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
                         type="checkbox"
                         name="age"
-                        value="1 year"
-                        // checked={values.age.includes('0-12 m')}
+                        value="year"
                       />
                       1 year
                     </Label>
                     <Label>
-                      <Input type="checkbox" name="age" value="2 years" />2
-                      years
+                      <Input
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        type="checkbox"
+                        name="age"
+                        value="2years"
+                      />
+                      2 years
                     </Label>
                     <Label>
-                      <Input type="checkbox" name="age" value="3 years +" />3
-                      years +
+                      <Input
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        type="checkbox"
+                        name="age"
+                        value="3years"
+                      />
+                      3 years +
                     </Label>
                   </Forma>
                 </Formik>
@@ -143,14 +171,26 @@ const NoticesFilters = () => {
                 <BtnLabel>By gender</BtnLabel>
               </BtnFilter>
               {genderOpen && (
-                <Formik initialValues={initialValues}>
+                <Formik initialValues={{ gender: '' }}>
                   <Forma>
                     <Label>
-                      <Input type="checkbox" name="gender" value="male" />
+                      <Input
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        type="checkbox"
+                        name="gender"
+                        value="male"
+                      />
                       male
                     </Label>
                     <Label>
-                      <Input type="checkbox" name="gender" value="female" />
+                      <Input
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        type="checkbox"
+                        name="gender"
+                        value="female"
+                      />
                       female
                     </Label>
                   </Forma>
