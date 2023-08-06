@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/save-pets/static/css/main.b7d0ba3d.css",
-    "main.js": "/save-pets/static/js/main.58c3cc07.js",
+    "main.js": "/save-pets/static/js/main.faa34a62.js",
     "static/js/410.6abc02de.chunk.js": "/save-pets/static/js/410.6abc02de.chunk.js",
     "static/js/432.7cfc0aea.chunk.js": "/save-pets/static/js/432.7cfc0aea.chunk.js",
     "static/js/637.2972d84e.chunk.js": "/save-pets/static/js/637.2972d84e.chunk.js",
     "static/css/301.631ecb36.chunk.css": "/save-pets/static/css/301.631ecb36.chunk.css",
-    "static/js/301.6564347f.chunk.js": "/save-pets/static/js/301.6564347f.chunk.js",
+    "static/js/301.c99401dd.chunk.js": "/save-pets/static/js/301.c99401dd.chunk.js",
     "static/js/718.33728766.chunk.js": "/save-pets/static/js/718.33728766.chunk.js",
     "static/js/76.3f8c14db.chunk.js": "/save-pets/static/js/76.3f8c14db.chunk.js",
     "static/js/148.4bc80e14.chunk.js": "/save-pets/static/js/148.4bc80e14.chunk.js",
@@ -67,12 +67,12 @@
     "static/media/cross-small.svg": "/save-pets/static/media/cross-small.8da70af0e6f5ef55f05592dc1412e003.svg",
     "static/media/menu-hamburger.svg": "/save-pets/static/media/menu-hamburger.e5ce08a82de7546bfde31ea978aefa46.svg",
     "main.b7d0ba3d.css.map": "/save-pets/static/css/main.b7d0ba3d.css.map",
-    "main.58c3cc07.js.map": "/save-pets/static/js/main.58c3cc07.js.map",
+    "main.faa34a62.js.map": "/save-pets/static/js/main.faa34a62.js.map",
     "410.6abc02de.chunk.js.map": "/save-pets/static/js/410.6abc02de.chunk.js.map",
     "432.7cfc0aea.chunk.js.map": "/save-pets/static/js/432.7cfc0aea.chunk.js.map",
     "637.2972d84e.chunk.js.map": "/save-pets/static/js/637.2972d84e.chunk.js.map",
     "301.631ecb36.chunk.css.map": "/save-pets/static/css/301.631ecb36.chunk.css.map",
-    "301.6564347f.chunk.js.map": "/save-pets/static/js/301.6564347f.chunk.js.map",
+    "301.c99401dd.chunk.js.map": "/save-pets/static/js/301.c99401dd.chunk.js.map",
     "718.33728766.chunk.js.map": "/save-pets/static/js/718.33728766.chunk.js.map",
     "76.3f8c14db.chunk.js.map": "/save-pets/static/js/76.3f8c14db.chunk.js.map",
     "148.4bc80e14.chunk.js.map": "/save-pets/static/js/148.4bc80e14.chunk.js.map",
@@ -89,6 +89,6 @@
   },
   "entrypoints": [
     "static/css/main.b7d0ba3d.css",
-    "static/js/main.58c3cc07.js"
+    "static/js/main.faa34a62.js"
   ]
 }
