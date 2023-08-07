@@ -32,7 +32,6 @@ const NoticesFilters = ({ filterNoticeAge, getFilters }) => {
 
   const [checkedValues, setCheckedValues] = useState(initialValues);
 
-  // ... ваш код ...
   const handleCheckboxChangeInternal = (fieldName, newValue) => {
     setCheckedValues(prevCheckedValues => ({
       ...prevCheckedValues,
@@ -40,15 +39,15 @@ const NoticesFilters = ({ filterNoticeAge, getFilters }) => {
     }));
 
     filterNoticeAge(newValue);
-  };
-
-  useEffect(() => {
-    const filtersArray = Object.entries(checkedValues).map(([key, value]) => ({
+    const filtersArray = Object.entries({
+      ...checkedValues,
+      [fieldName]: newValue,
+    }).map(([key, value]) => ({
       id: uuidv4(),
       [key]: value,
     }));
     getFilters(filtersArray);
-  }, [checkedValues]);
+  };
 
   const [rotationGender, setRotationGender] = useState(0);
   const handleBtnClick = () => {
