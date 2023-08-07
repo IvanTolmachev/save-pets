@@ -24,6 +24,7 @@ const NoticesFilters = ({ filterNoticeAge }) => {
   const [rotationAge, setRotationAge] = useState(0);
   const initialValues = {
     age: '',
+    gender: '',
   };
 
   const [checkedValues, setCheckedValues] = useState(initialValues);
@@ -33,7 +34,7 @@ const NoticesFilters = ({ filterNoticeAge }) => {
       ...prevCheckedValues,
       [fieldName]: newValue,
     }));
-    console.log('new value', newValue);
+
     handleCheckboxChange(newValue);
   };
 
@@ -185,36 +186,30 @@ const NoticesFilters = ({ filterNoticeAge }) => {
                 <Formik initialValues={{ gender: '' }}>
                   {({ values, setFieldValue }) => (
                     <Forma>
-                      <Label>
-                        <Input
-                          onChange={() => {
-                            const newValue =
-                              values.gender === 'male' ? '' : 'male';
-                            setFieldValue('gender', newValue);
-                            handleCheckboxChange(newValue); // Передаємо дані у функцію
-                          }}
-                          checked={values.gender === 'male'}
-                          type="checkbox"
-                          name="gender"
-                          value="male"
-                        />
-                        male
-                      </Label>
-                      <Label>
-                        <Input
-                          onChange={() => {
-                            const newValue =
-                              values.gender === 'female' ? '' : 'female';
-                            setFieldValue('gender', newValue);
-                            handleCheckboxChange(newValue); // Передаємо дані у функцію
-                          }}
-                          checked={values.gender === 'female'}
-                          type="checkbox"
-                          name="gender"
-                          value="female"
-                        />
-                        female
-                      </Label>
+                      <ElementFilter
+                        type="checkbox"
+                        name="gender"
+                        value="male"
+                        isChecked={checkedValues}
+                        checked={checkedValues.gender === 'male'}
+                        onChange={() => {
+                          const newValue =
+                            checkedValues.gender === 'male' ? '' : 'male';
+                          handleCheckboxChangeInternal('gender', newValue);
+                        }}
+                      />
+                      <ElementFilter
+                        type="checkbox"
+                        name="gender"
+                        value="female"
+                        isChecked={checkedValues}
+                        checked={checkedValues.gender === 'female'}
+                        onChange={() => {
+                          const newValue =
+                            checkedValues.gender === 'female' ? '' : 'female';
+                          handleCheckboxChangeInternal('gender', newValue);
+                        }}
+                      />
                     </Forma>
                   )}
                 </Formik>

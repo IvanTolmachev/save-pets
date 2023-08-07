@@ -2,7 +2,9 @@ import React from 'react';
 import { IconCheck, Input, Label } from '../NoticesFilters.styled';
 import icons from '../../../../images/icons/icons-card.svg';
 const ElementFilter = ({ type, name, value, checked, onChange, isChecked }) => {
-  const stringValue = isChecked.age;
+  const stringValue = isChecked?.age;
+  const genderValue = isChecked?.gender;
+
   return (
     <>
       <Label>
@@ -14,11 +16,11 @@ const ElementFilter = ({ type, name, value, checked, onChange, isChecked }) => {
           onChange={onChange}
         />
         {value}
-        {stringValue === value && (
+        {stringValue === value || genderValue === value ? (
           <IconCheck width={16} height={16}>
             <use href={icons + '#check'}></use>
           </IconCheck>
-        )}
+        ) : null}
       </Label>
     </>
   );

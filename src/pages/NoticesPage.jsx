@@ -48,16 +48,16 @@ const NoticesPage = () => {
 
   const filterNoticeAge = param => {
     switch (param) {
-      case 'month':
+      case '0-12 m':
         setNoticeAge({ startAge: 1, endAge: 11 });
         break;
-      case 'year':
+      case '1 year':
         setNoticeAge({ startAge: 12, endAge: 23 });
         break;
-      case '2years':
+      case '2 years':
         setNoticeAge({ startAge: 24, endAge: 35 });
         break;
-      case '3years':
+      case '3 years+':
         setNoticeAge({ startAge: 36, endAge: 100 });
         break;
       case 'female':
