@@ -1,6 +1,6 @@
 import React from 'react';
-import { IconCheck, Input, Label } from './NoticesFilters.styled';
-import icons from '../../../images/icons/icons-card.svg';
+import { IconCheck, Input, Label } from '../NoticesFilters.styled';
+import icons from '../../../../images/icons/icons-card.svg';
 const ElementFilter = ({ type, name, value, checked, onChange, isChecked }) => {
   const stringValue = isChecked.age;
   return (
@@ -13,7 +13,7 @@ const ElementFilter = ({ type, name, value, checked, onChange, isChecked }) => {
           checked={checked}
           onChange={onChange}
         />
-        0-12 m
+        {value}
         {stringValue === value && (
           <IconCheck width={16} height={16}>
             <use href={icons + '#check'}></use>

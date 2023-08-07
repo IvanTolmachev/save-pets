@@ -15,7 +15,7 @@ import {
   BtnOpenTitle,
 } from './NoticesFilters.styled';
 import icons from '../../../images/icons/icons-card.svg';
-import ElementFilter from './ElementFilter';
+import ElementFilter from './ElementFilter/ElementFilter';
 
 const NoticesFilters = ({ filterNoticeAge }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,6 +33,7 @@ const NoticesFilters = ({ filterNoticeAge }) => {
       ...prevCheckedValues,
       [fieldName]: newValue,
     }));
+    console.log('new value', newValue);
     handleCheckboxChange(newValue);
   };
 
@@ -115,60 +116,51 @@ const NoticesFilters = ({ filterNoticeAge }) => {
                       <ElementFilter
                         type="checkbox"
                         name="age"
-                        value="month"
+                        value="0-12 m"
                         isChecked={checkedValues}
-                        checked={checkedValues.age === 'month'}
+                        checked={checkedValues.age === '0-12 m'}
                         onChange={() => {
                           const newValue =
-                            checkedValues.age === 'month' ? '' : 'month';
+                            checkedValues.age === '0-12 m' ? '' : '0-12 m';
                           handleCheckboxChangeInternal('age', newValue);
                         }}
                       />
-                      <Label>
-                        <Input
-                          type="checkbox"
-                          name="age"
-                          value="year"
-                          checked={values.age === 'year'}
-                          onChange={() => {
-                            const newValue =
-                              values.age === 'year' ? '' : 'year';
-                            setFieldValue('age', newValue);
-                            handleCheckboxChange(newValue); // Передаємо дані у функцію
-                          }}
-                        />
-                        1 year
-                      </Label>
-                      <Label>
-                        <Input
-                          type="checkbox"
-                          name="age"
-                          checked={values.age === '2years'}
-                          value="2years"
-                          onChange={() => {
-                            const newValue =
-                              values.age === '2years' ? '' : '2years';
-                            setFieldValue('age', newValue);
-                            handleCheckboxChange(newValue); // Передаємо дані у функцію
-                          }}
-                        />
-                        2 years
-                      </Label>
-                      <Label>
-                        <Input
-                          type="checkbox"
-                          name="age"
-                          checked={values.age === '3years'}
-                          value="3years"
-                          onChange={() => {
-                            const newValue =
-                              values.age === '3years' ? '' : '3years';
-                            setFieldValue('age', newValue);
-                            handleCheckboxChange(newValue); // Передаємо дані у функцію
-                          }}
-                        />
-                        3 years +
-                      </Label>
+                      <ElementFilter
+                        type="checkbox"
+                        name="age"
+                        value="1 year"
+                        isChecked={checkedValues}
+                        checked={checkedValues.age === '1 year'}
+                        onChange={() => {
+                          const newValue =
+                            checkedValues.age === '1 year' ? '' : '1 year';
+                          handleCheckboxChangeInternal('age', newValue);
+                        }}
+                      />
+                      <ElementFilter
+                        type="checkbox"
+                        name="age"
+                        value="2 years"
+                        isChecked={checkedValues}
+                        checked={checkedValues.age === '2 years'}
+                        onChange={() => {
+                          const newValue =
+                            checkedValues.age === '2 years' ? '' : '2 years';
+                          handleCheckboxChangeInternal('age', newValue);
+                        }}
+                      />
+                      <ElementFilter
+                        type="checkbox"
+                        name="age"
+                        value="3 years+"
+                        isChecked={checkedValues}
+                        checked={checkedValues.age === '3 years+'}
+                        onChange={() => {
+                          const newValue =
+                            checkedValues.age === '3 years+' ? '' : '3 years+';
+                          handleCheckboxChangeInternal('age', newValue);
+                        }}
+                      />
                     </Forma>
                   )}
                 </Formik>
