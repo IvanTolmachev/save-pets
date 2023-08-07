@@ -8,6 +8,9 @@ import {
 import icons from '../../../../images/icons/icons-card.svg';
 
 const SelectedFilters = ({ filters, handleReset }) => {
+  const resetFilter = (filter, type) => {
+    handleReset(filter, type);
+  };
   return (
     <FiltersWrapper>
       <FiltersList>
@@ -16,7 +19,7 @@ const SelectedFilters = ({ filters, handleReset }) => {
             {filter.age && (
               <SelectedBtn
                 type="button"
-                onClick={() => handleReset(filter, 'age')}
+                onClick={() => resetFilter(filter, 'age')}
               >
                 <SelectedLabel>{filter.age}</SelectedLabel>
                 <Icon width={16} height={16}>
@@ -27,7 +30,7 @@ const SelectedFilters = ({ filters, handleReset }) => {
             {filter.gender && (
               <SelectedBtn
                 type="button"
-                onClick={() => handleReset(filter, 'gender')}
+                onClick={() => resetFilter(filter, 'gender')}
               >
                 <SelectedLabel>{filter.gender}</SelectedLabel>
                 <Icon width={16} height={16}>

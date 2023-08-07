@@ -115,6 +115,13 @@ const NoticesPage = () => {
     setIsModalOpenUserLogin(!isModalOpenUserLogin);
   };
 
+  const handleFilterReset = (filter, type) => {
+    // Створюємо копію стану фільтрів, видаляємо вибраний фільтр за типом
+    const updatedFilters = filters.filter(item => item[type] !== filter[type]);
+    // Встановлюємо оновлений стан фільтрів
+    setFilters(updatedFilters);
+  };
+
   useEffect(() => {
     const params = {
       category: locationCategory,
@@ -193,7 +200,7 @@ const NoticesPage = () => {
             <AddPetBtn onClick={() => handleNavigate('notices')} />
           )}
         </WrapperBtn>
-        <SelectedFilters filters={filters} />
+        <SelectedFilters filters={filters} handleReset={handleFilterReset} />
 
         {/* {filters.length > 0 && (
           <SelectedFilters filters={filters} handleReset={handleFilterReset} />
