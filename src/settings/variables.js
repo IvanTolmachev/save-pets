@@ -27,6 +27,8 @@ const transition = {
 
 const breakPoints = {
   mobile: '@media screen and (min-width: 480px)',
+  onlyMobile: '@media screen and (max-width: 767px)',
+
   tablet: '@media screen and (min-width: 767px)',
   desktop: '@media screen and (min-width: 1280px)',
 };

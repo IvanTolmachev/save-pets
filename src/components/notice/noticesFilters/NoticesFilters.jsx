@@ -17,7 +17,7 @@ import {
 import icons from '../../../images/icons/icons-card.svg';
 import ElementFilter from './ElementFilter/ElementFilter';
 
-const NoticesFilters = ({ filterNoticeAge }) => {
+const NoticesFilters = ({ filterNoticeAge, getFilters }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [ageOpen, setAgeOpen] = useState(false);
   const [genderOpen, setGenderOpen] = useState(false);
@@ -34,8 +34,8 @@ const NoticesFilters = ({ filterNoticeAge }) => {
       ...prevCheckedValues,
       [fieldName]: newValue,
     }));
-
-    handleCheckboxChange(newValue);
+    filterNoticeAge(newValue);
+    getFilters(checkedValues);
   };
 
   const [rotationGender, setRotationGender] = useState(0);
@@ -73,10 +73,6 @@ const NoticesFilters = ({ filterNoticeAge }) => {
       document.removeEventListener('click', handleOutsideClick);
     };
   }, [isOpen]);
-
-  const handleCheckboxChange = event => {
-    filterNoticeAge(event);
-  };
 
   return (
     <Wrapper ref={dropdownRef}>

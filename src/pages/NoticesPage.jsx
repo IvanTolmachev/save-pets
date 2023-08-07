@@ -25,6 +25,7 @@ import { ModalUserLogin } from 'components/allModals/UserLoginModal/UserLoginMod
 import { WrapperBtn, WrapperFilter } from './NoticesPage.styled';
 import AddPetBtn from 'components/buttons/addPetBtn/addPetBtn';
 import NoticesFilters from 'components/notice/noticesFilters/NoticesFilters';
+import SelectedFilters from 'components/notice/noticesFilters/SelectedFilters.js/SelectedFilters';
 
 const NoticesPage = () => {
   // для кнопки add pet
@@ -72,6 +73,13 @@ const NoticesPage = () => {
         break;
     }
   };
+
+  const [filters, setFilters] = useState([]);
+
+  const getFilters = data => {
+    setFilters([...data]);
+  };
+  console.log(filters);
 
   const handleNavigate = source => {
     if (!isLoggedIn) {
@@ -178,11 +186,19 @@ const NoticesPage = () => {
       <WrapperFilter>
         <NoticesCategoriesNav onClick={handleCategoryChange} />
         <WrapperBtn>
-          <NoticesFilters filterNoticeAge={filterNoticeAge} />
+          <NoticesFilters
+            filterNoticeAge={filterNoticeAge}
+            getFilters={getFilters}
+          />
           {width >= 768 && (
             <AddPetBtn onClick={() => handleNavigate('notices')} />
           )}
         </WrapperBtn>
+        <SelectedFilters filters={filters} />
+
+        {/* {filters.length > 0 && (
+          <SelectedFilters filters={filters} handleReset={handleFilterReset} />
+        )} */}
       </WrapperFilter>
       {isLoading ? (
         <Loader />
