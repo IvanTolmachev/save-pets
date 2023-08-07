@@ -75,11 +75,10 @@ const NoticesPage = () => {
   };
 
   const [filters, setFilters] = useState([]);
-
   const getFilters = data => {
-    setFilters([...data]);
+    console.log(data);
+    setFilters(data);
   };
-  console.log(filters);
 
   const handleNavigate = source => {
     if (!isLoggedIn) {

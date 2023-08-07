@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Formik } from 'formik';
+
 import {
   Wrapper,
   BtnToOpen,
@@ -14,6 +15,8 @@ import {
   BtnLabel,
   BtnOpenTitle,
 } from './NoticesFilters.styled';
+
+import { v4 as uuidv4 } from 'uuid';
 import icons from '../../../images/icons/icons-card.svg';
 import ElementFilter from './ElementFilter/ElementFilter';
 
@@ -29,14 +32,23 @@ const NoticesFilters = ({ filterNoticeAge, getFilters }) => {
 
   const [checkedValues, setCheckedValues] = useState(initialValues);
 
+  // ... ваш код ...
   const handleCheckboxChangeInternal = (fieldName, newValue) => {
     setCheckedValues(prevCheckedValues => ({
       ...prevCheckedValues,
       [fieldName]: newValue,
     }));
+
     filterNoticeAge(newValue);
-    getFilters(checkedValues);
   };
+
+  useEffect(() => {
+    const filtersArray = Object.entries(checkedValues).map(([key, value]) => ({
+      id: uuidv4(),
+      [key]: value,
+    }));
+    getFilters(filtersArray);
+  }, [checkedValues]);
 
   const [rotationGender, setRotationGender] = useState(0);
   const handleBtnClick = () => {
